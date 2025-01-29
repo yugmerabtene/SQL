@@ -10,9 +10,11 @@
 - **Modèle relationnel** :  
   - Tables, relations, attributs, tuples.  
   - Clés primaires, clés étrangères, et contraintes d'intégrité.  
+  - Théorie des ensembles et algèbre relationnelle.  
 - **Normalisation** :  
   - 1NF, 2NF, 3NF, BCNF (formes normales).  
   - Dénormalisation et ses cas d'utilisation.  
+  - Analyse des dépendances fonctionnelles.  
 - **Langage SQL** :  
   - DDL (CREATE, ALTER, DROP).  
   - DML (SELECT, INSERT, UPDATE, DELETE).  
@@ -24,13 +26,14 @@
   - Créer des schémas de base de données.  
   - Insérer, mettre à jour et supprimer des données.  
 - **Requêtes SQL avancées** :  
-  - JOIN (INNER, LEFT, RIGHT, FULL).  
-  - Agrégations (GROUP BY, HAVING).  
+  - JOIN (INNER, LEFT, RIGHT, FULL, CROSS).  
+  - Agrégations (GROUP BY, HAVING, ROLLUP, CUBE).  
   - Sous-requêtes (corrélées et non corrélées).  
-  - Fonctions SQL (COALESCE, CASE, CAST).  
+  - Fonctions SQL (COALESCE, CASE, CAST, fenêtrage avec OVER et PARTITION BY).  
 - **Transactions et contrôle de concurrence** :  
   - ACID (Atomicité, Cohérence, Isolation, Durabilité).  
-  - Verrouillage et isolation des transactions.  
+  - Verrouillage et isolation des transactions (READ COMMITTED, REPEATABLE READ, SERIALIZABLE).  
+  - Gestion des conflits et deadlocks.  
 
 #### **Ressources suggérées**  
 - **Livres** :  
@@ -46,7 +49,7 @@
 ### **Phase 2 : Conception et Optimisation de Bases de Données**
 
 #### **Objectifs**  
-- Apprendre à modéliser des bases de données complexes.  
+- Apprendre à modéliser des bases de données complexes en utilisant la méthode Merise.  
 - Comprendre les techniques d'optimisation des requêtes.  
 - Maîtriser les outils d'analyse de performance.  
 
@@ -55,9 +58,24 @@
 - **UML et diagrammes entité-relation (ER)** :  
   - Entités, attributs, relations, cardinalités.  
   - Outils de modélisation (Lucidchart, Draw.io, MySQL Workbench).  
+- **Méthode Merise** :  
+  - **Concepts de base** :  
+    - Cycle de vie d'un projet (conceptuel, logique, physique).  
+    - Niveaux de modélisation (conceptuel, organisationnel, logique, physique).  
+  - **Modèle Conceptuel de Données (MCD)** :  
+    - Entités, associations, cardinalités.  
+    - Règles de gestion et contraintes métier.  
+  - **Modèle Logique de Données (MLD)** :  
+    - Transformation du MCD en schéma relationnel.  
+    - Normalisation des tables (1NF, 2NF, 3NF, BCNF).  
+  - **Modèle Physique de Données (MPD)** :  
+    - Implémentation du MLD dans un SGBD (choix des types de données, index, contraintes).  
+  - **Outils de modélisation Merise** :  
+    - Utilisation de logiciels comme WinDesign, PowerAMC, ou des outils open-source.  
 - **Indexation et performances** :  
   - Types d'index (B-Tree, Hash, Full-Text).  
   - Impact des index sur les performances.  
+  - Partitionnement de tables pour les grandes bases de données.  
 - **Contraintes d'intégrité** :  
   - Contraintes de clé, de domaine, et référentielles.  
 
@@ -68,14 +86,17 @@
 - **Optimisation des requêtes SQL** :  
   - Éviter les requêtes coûteuses (SELECT *, sous-requêtes imbriquées).  
   - Utiliser des index et des vues matérialisées.  
+  - Optimiser les jointures et les agrégations.  
 
 #### **Ressources suggérées**  
 - **Livres** :  
   - *High Performance MySQL* (Baron Schwartz).  
   - *SQL Performance Explained* (Markus Winand).  
+  - *Merise : Conception de systèmes d'information* (Hubert Tardieu).  
 - **Pratique** :  
   - Exercices sur PostgreSQL EXPLAIN ANALYZE.  
   - Utiliser des jeux de données volumineux pour tester l'optimisation.  
+  - Études de cas Merise pour appliquer la méthode à des projets concrets.  
 
 ---
 
@@ -96,11 +117,13 @@
   - Restauration à partir de sauvegardes.  
 - **Réplication et haute disponibilité** :  
   - Configurer la réplication maître-esclave.  
-  - Utiliser des solutions comme PostgreSQL Streaming Replication.  
+  - Utiliser des solutions comme PostgreSQL Streaming Replication ou MySQL Group Replication.  
+  - Mettre en place des clusters pour la haute disponibilité (ex : PostgreSQL Patroni, MySQL InnoDB Cluster).  
 
 ✅ **Sécurité des bases de données**  
 - **Chiffrement des données** :  
   - Chiffrement au repos et en transit (SSL/TLS).  
+  - Utilisation de modules de chiffrement comme pgcrypto pour PostgreSQL.  
 - **Sécurisation des accès** :  
   - Authentification forte (LDAP, OAuth).  
   - Audit des accès et des modifications.  
@@ -131,6 +154,7 @@
 - **Intégration avec des bases NoSQL** :  
   - Utiliser MongoDB pour des données non structurées.  
   - Explorer Cassandra pour des besoins de scalabilité.  
+  - Utiliser Redis pour le caching et les données en mémoire.  
 
 ✅ **Programmation avancée en SQL**  
 - **PL/pgSQL, PL/SQL** :  
@@ -140,17 +164,51 @@
   - Gérer des workflows complexes avec des procédures.  
 
 ✅ **Projet personnel/professionnel**  
-- **Concevoir et optimiser une base complexe** :  
-  - Modéliser une base de données pour un cas d'utilisation réel.  
+- **Concevoir et optimiser une base complexe avec Merise** :  
+  - Appliquer la méthode Merise pour modéliser un système d'information complet.  
+  - Passer du MCD au MLD, puis au MPD pour implémenter la base de données.  
   - Appliquer les techniques d'optimisation apprises.  
 - **Gérer un projet réel avec des contraintes métier** :  
   - Collaborer avec des équipes pour résoudre des problèmes concrets.  
+  - Documenter chaque étape du projet selon les principes de Merise.  
 
 #### **Ressources suggérées**  
 - **Livres** :  
   - *Designing Data-Intensive Applications* (Martin Kleppmann).  
+  - *Merise : Conception de systèmes d'information* (Hubert Tardieu).  
 - **Pratique** :  
   - Exercices avancés PostgreSQL/MySQL.  
   - Contribuer à des projets open-source sur GitHub.  
+  - Études de cas Merise pour approfondir la pratique.  
 
 ---
+
+### **Phase 5 : Expertise et Innovation**
+
+#### **Objectifs**  
+- Explorer les technologies émergentes en bases de données.  
+- Maîtriser l'intégration de l'IA et du Machine Learning avec les bases de données.  
+- Devenir un leader dans le domaine des bases de données.  
+
+#### **Contenu détaillé**  
+✅ **Technologies émergentes**  
+- **Bases de données cloud-native** :  
+  - Utiliser Amazon RDS, Google Cloud SQL, ou Azure SQL Database.  
+  - Explorer les bases de données serverless comme Amazon Aurora Serverless.  
+- **Bases de données distribuées** :  
+  - Comprendre les systèmes comme CockroachDB ou YugabyteDB.  
+- **Bases de données orientées graphe** :  
+  - Utiliser Neo4j pour des cas d'usage complexes (réseaux sociaux, recommandations).  
+
+✅ **Intégration de l'IA et du Machine Learning**  
+- **Analyse de données avec SQL et Python** :  
+  - Utiliser des librairies comme Pandas, NumPy, et Scikit-learn.  
+  - Intégrer des modèles de Machine Learning dans des bases de données.  
+- **Automatisation des tâches d'administration** :  
+  - Utiliser des scripts Python pour automatiser les sauvegardes, les restaurations, et les optimisations.  
+
+✅ **Leadership et gestion de projets**  
+- **Gestion d'équipes techniques** :  
+  - Apprendre à diriger des équipes de développeurs et d'administrateurs de bases de données.  
+- **Gestion de projets Agile** :  
+  - Appliquer les méthodologies Scrum et Kanban pour des projets de bases de données.  
